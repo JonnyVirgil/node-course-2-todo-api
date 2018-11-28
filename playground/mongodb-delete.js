@@ -7,10 +7,13 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
   }
   console.log('Connected to MongoDB server');
   const db = client.db('TodoApp');
-  db.collection('Todos').find().toArray().then((docs) => {
-    console.log(JSON.stringify(docs, undefined, 2));
+
+  db.collection('Users').deleteMany({name: 'Andrew'});
+
+  db.collection('Users').findOneAndDelete({_id: new ObjectID("5bfd272131c5630c1950b12c")}).then((result) => {
+    console.log(result);
   }, (err) => {
-    console.log('Unable to fetch todos', err);
+    console.log('Unable to delete todos', err);
   });
   client.close();
 });
