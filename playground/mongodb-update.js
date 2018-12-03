@@ -9,9 +9,12 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
   const db = client.db('TodoApp');
 
 
-  db.collection('Todos').findOneAndUpdate({_id: new ObjectID("5bfd4cb12b2bdce5695d8cc0")}, {
+  db.collection('Users').findOneAndUpdate({_id: new ObjectID("5bfd25c1236a000bc431287f")}, {
     $set: {
-      completed:true
+      name:"Jon"
+    },
+    $inc: {
+      age: 1
     }
   }, {
     returnOriginal: false
